@@ -1,213 +1,125 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vitals Digital // Clinical Growth Architect</title>
   
-  <!-- ENGINES & TYPOGRAPHY -->
-  <script src="https://tailwindcss.com"></script>
-  <script src="https://cloudflare.com"></script>
-  <script src="https://cloudflare.com"></script>
-  
-  <link rel="preconnect" href="https://googleapis.com">
-  <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            serif: ['"Cormorant Garamond"', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    .text-gradient-bronze {
-      background: linear-gradient(135deg, #1E2229 30%, #C5A880 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* MASTER SYSTEM INITIALIZATION RULES */
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; background-color: #FFFFFF; }
+    body { background-color: #FFFFFF; color: #111111; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+    
+    /* PREMIUM BAR NAVIGATION SYSTEM */
+    header { width: 100%; position: fixed; top: 0; left: 0; z-index: 100; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-b: 1px solid #EEEEEE; }
+    .nav-container { max-w: 1200px; margin: 0 auto; padding: 0 24px; height: 80px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 11px; letter-spacing: 4px; color: #111111; }
+    .logo-dot { width: 6px; height: 6px; background-color: #C5A880; border-radius: 50%; }
+    .audit-btn { padding: 12px 24px; font-size: 10px; font-weight: 700; background-color: #111111; color: #FFFFFF; border: none; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; transition: all 0.3s ease; }
+    .audit-btn:hover { background-color: #C5A880; }
+    
+    /* LUXURY HERO IMAGE FRAME PANEL */
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 24px 80px 24px; background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 50%, #FFFFFF 100%), url('https://unsplash.com'); background-size: cover; background-position: center; }
+    .badge { display: inline-block; padding: 6px 14px; font-size: 9px; font-weight: 700; color: #666666; border: 1px solid #E5E5E5; background-color: rgba(255,255,255,0.9); letter-spacing: 3px; margin-bottom: 32px; text-transform: uppercase; }
+    
+    /* EDITORIAL TYPOGRAPHY MECHANICS */
+    h1 { font-size: 34px; font-weight: 800; line-height: 1.15; max-w: 900px; margin-bottom: 24px; color: #111111; letter-spacing: -1px; animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .hero-serif { font-family: "Didot", "Bodoni MT", "Cinzel", Georgia, serif; font-style: italic; font-weight: 400; color: #C5A880; letter-spacing: 0; }
+    .subtitle { font-size: 14px; color: #555555; max-w: 680px; line-height: 1.65; margin-bottom: 44px; animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    
+    /* CONVERSION ACTION TARGET */
+    .cta-btn { width: 100%; max-w: 380px; padding: 20px; font-size: 11px; font-weight: 700; color: #FFFFFF; background-color: #111111; border: none; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.05); animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .cta-btn:hover { background-color: #C5A880; transform: translateY(-2px); box-shadow: 0 15px 35px rgba(197,168,128,0.25); }
+    .router-status { display: flex; align-items: center; gap: 8px; font-size: 9px; color: #666666; margin-top: 28px; font-family: monospace; letter-spacing: 1px; }
+    .ping-dot { width: 6px; height: 6px; background-color: #10B981; border-radius: 50%; display: inline-block; animation: pulseGlow 2s infinite; }
+    
+    /* STRUCTURAL INFRASTRUCTURE SECTION */
+    .solutions { max-w: 1200px; margin: 0 auto; padding: 140px 24px; border-top: 1px solid #EEEEEE; background-color: #FFFFFF; }
+    .section-header { display: flex; flex-direction: column; margin-bottom: 72px; text-align: left; }
+    .section-label { font-size: 9px; font-weight: 700; color: #C5A880; letter-spacing: 4px; margin-bottom: 12px; }
+    .section-title { font-size: 26px; font-weight: 800; color: #111111; line-height: 1.2; letter-spacing: -0.5px; }
+    
+    /* RESPONSIVE LAYOUT MATRIX GRID */
+    .grid-container { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    .card { background-color: #FAF8F5; border: 1px solid #EFECE8; padding: 52px 36px; display: flex; flex-direction: column; min-height: 290px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .card:hover { background-color: #FFFFFF; border-color: #C5A880; transform: translateY(-6px); box-shadow: 0 20px 40px rgba(197,168,128,0.08); }
+    .card-num { font-size: 11px; font-family: monospace; color: #C5A880; margin-bottom: 36px; font-weight: 600; letter-spacing: 1px; }
+    .card-title { font-size: 20px; font-weight: 700; color: #111111; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .card-desc { font-size: 13.5px; color: #555555; line-height: 1.7; font-weight: 400; }
+    
+    /* MOTION CORE DEFINITIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #FDFBF7;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #EFEAE2;
-      border-radius: 3px;
+    
+    /* BREAKPOINTS SYSTEM MAP */
+    @media (min-width: 768px) {
+      h1 { font-size: 58px; }
+      .section-title { font-size: 38px; }
+      .grid-container { grid-template-columns: repeat(3, 1fr); }
+      .section-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
     }
   </style>
 </head>
-<body class="bg-[#FDFBF7] text-[#1E2229] font-sans overflow-x-hidden custom-scrollbar">
+<body>
 
-  <!-- ==================== PREMIUM HEADER NAVIGATION ==================== -->
-  <header class="w-full fixed top-0 left-0 z-50 bg-[#FDFBF7]/80 backdrop-blur-xl border-b border-[#EFEAE2] transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <div class="flex items-center space-x-3 group cursor-pointer">
-        <span class="w-2 h-2 bg-[#C5A880] rounded-full"></span>
-        <span class="text-xs font-bold tracking-[0.3em] uppercase text-[#1E2229]">VITALS DIGITAL</span>
+  <!-- FIXED NAVIGATION HEADER -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span>VITALS DIGITAL</span>
       </div>
-      <nav class="hidden md:flex items-center space-x-12 text-[10px] font-bold tracking-[0.2em] text-[#78716C]">
-        <a href="#solutions" class="hover:text-[#1E2229] transition-colors duration-300">01 / ARCHITECTURE</a>
-        <a href="#case-studies" class="hover:text-[#1E2229] transition-colors duration-300">02 / DEPLOYMENTS</a>
-        <a href="#framework" class="hover:text-[#1E2229] transition-colors duration-300">03 / FRAMEWORK</a>
-      </nav>
-      <button class="px-6 py-3 text-[10px] font-bold tracking-[0.2em] text-white bg-[#1E2229] hover:bg-[#C5A880] transition-all duration-500 uppercase rounded-none shadow-sm">
-        INITIATE AUDIT
-      </button>
+      <button class="audit-btn">Initiate Audit</button>
     </div>
   </header>
 
-  <!-- ==================== MAIN FULL-SCREEN HERO LAYER ==================== -->
-  <section class="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden pt-20">
+  <!-- THE HERO VIEW PANEL -->
+  <section class="hero">
+    <div class="badge">POSITIONING // CLINICAL GROWTH ARCHITECT</div>
+    <h1>We Engineer High-Yield <span class="hero-serif">Mobile Systems</span> for Elite Private Dental Practices.</h1>
+    <p class="subtitle">Bypassing heavy templates. Deploying lightning-fast frameworks featuring Frictionless Mobile Conversion Mechanics to capture premium patients across South Delhi, Gurgaon, and South Mumbai.</p>
+    <button class="cta-btn">Secure Your Clinic's Growth Blueprint</button>
+    <div class="router-status">
+      <span class="ping-dot"></span>
+      <span>WHATSAPP ROUTER LOGIC: OPERATIONAL (99.8% VELOCITY)</span>
+    </div>
+  </section>
+
+  <!-- DATA MATRIX INFRASTRUCTURE SECTION -->
+  <section class="solutions">
+    <div class="section-header">
+      <div>
+        <div class="section-label">01 // CORE INFRASTRUCTURE</div>
+        <h2 class="section-title">Engineered for High-Ticket Dental Brands.</h2>
+      </div>
+    </div>
     
-    <!-- FULL IMAGE BACKGROUND WITH LUXURY OVERLAYS -->
-    <div class="absolute inset-0 z-0">
-      <img id="hero-bg" src="https://unsplash.com" 
-           alt="Luxury Design Space" class="w-full h-full object-cover origin-center scale-105">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#FDFBF7]/90 via-[#FDFBF7]/85 to-[#FDFBF7]"></div>
-    </div>
-
-    <!-- HERO CONTENT CONTAINER -->
-    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-      <div id="hero-badge" class="opacity-0 inline-flex items-center space-x-2 px-4 py-1.5 mb-8 text-[9px] font-bold tracking-[0.25em] text-[#78716C] uppercase border border-[#EFEAE2] bg-white/60 backdrop-blur-sm">
-        <span>POSITIONING</span><span class="text-[#C5A880]">//</span><span>CLINICAL GROWTH ARCHITECT</span>
+    <div class="grid-container">
+      <div class="card">
+        <div class="card-num">/ 01</div>
+        <h3 class="card-title">Tier-1 Hub Demographics</h3>
+        <p class="card-desc">Custom-targeted interfaces designed to systematically filter, attract, and capture high-intent patients looking for premium implant, veneer, and cosmetic dental treatments.</p>
       </div>
-      
-      <h1 id="hero-title" class="opacity-0 text-4xl md:text-7xl font-extrabold tracking-tighter max-w-4xl leading-[1.05] mb-8 text-gradient-bronze">
-        We Engineer High-Yield <span class="font-serif font-normal italic text-[#C5A880] tracking-normal">Mobile Systems</span> for Elite Private Dental Practices.
-      </h1>
-      
-      <p id="hero-desc" class="opacity-0 text-xs md:text-sm text-[#57534E] max-w-2xl font-normal tracking-wide leading-relaxed mb-12">
-        Bypassing heavy templates. Deploying lightning-fast frameworks featuring Frictionless Mobile Conversion Mechanics to capture premium patients across South Delhi, Gurgaon, and South Mumbai.
-      </p>
-
-      <div id="hero-cta" class="opacity-0 flex flex-col items-center gap-4 w-full max-w-md">
-        <button class="w-full px-8 py-4 text-[10px] font-bold tracking-[0.25em] text-white bg-[#1E2229] hover:bg-[#C5A880] hover:shadow-[0_10px_30px_rgba(197,168,128,0.2)] transition-all duration-500 uppercase rounded-none">
-          Secure Your Clinic's Growth Blueprint
-        </button>
-        <div class="flex items-center space-x-2 text-[9px] font-mono tracking-widest text-[#78716C] mt-2">
-          <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
-          <span>WHATSAPP ROUTER LOGIC: OPERATIONAL (99.8% VELOCITY)</span>
-        </div>
+      <div class="card">
+        <div class="card-num">/ 02</div>
+        <h3 class="card-title">Zero Patient Leaks</h3>
+        <p class="card-desc">Re-engineering heavy clinical backends into hyper-lightweight mobile frameworks. Completely eliminating the 40% patient dropout caused by sluggish loading speeds.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">/ 03</div>
+        <h3 class="card-title">Frictionless Routing</h3>
+        <p class="card-desc">Integrating a proprietary One-Tap WhatsApp Smart Router that channels high-value inbound patient queries directly to your clinical coordination desk instantly.</p>
       </div>
     </div>
   </section>
 
-  <!-- ==================== SECTION 2: THE CLINICAL ARCHITECTURE ==================== -->
-  <section id="solutions" class="relative z-10 w-full bg-[#FDFBF7] border-t border-[#EFEAE2] py-32">
-    <div class="max-w-7xl mx-auto px-6">
-      
-      <!-- SECTION CONTAINER HEADER -->
-      <div id="solutions-header" class="opacity-0 flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-6">
-        <div>
-          <div class="text-[9px] font-bold tracking-[0.3em] text-[#C5A880] uppercase mb-3">01 // CORE INFRASTRUCTURE</div>
-          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-[#1E2229]">Engineered for High-Ticket Dental Brands.</h2>
-        </div>
-        <p class="text-xs text-[#57534E] max-w-xs font-normal leading-relaxed">
-          Completely rebuilding slow templates to completely eliminate patient conversion drop-off points.
-        </p>
-      </div>
-
-      <!-- 3-COLUMN RESPONSIVE LAYOUT MATRIX GRID -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- MODULE CARD 1 -->
-        <div class="solution-card opacity-0 bg-[#F9F6F0] border border-[#EFEAE2] p-10 hover:bg-white hover:border-[#C5A880] transition-all duration-500 shadow-sm flex flex-col justify-between min-h-[300px]">
-          <div>
-            <div class="text-xs font-mono text-[#C5A880] mb-8">/ 01</div>
-            <h3 class="text-xl font-bold tracking-tight text-[#1E2229] mb-4">Tier-1 Hub Demographics</h3>
-            <p class="text-xs text-[#57534E] leading-relaxed font-normal">
-              Custom-targeted interfaces designed to systematically filter, attract, and capture high-intent patients looking for premium implant, veneer, and cosmetic dental treatments.
-            </p>
-          </div>
-        </div>
-
-        <!-- MODULE CARD 2 -->
-        <div class="solution-card opacity-0 bg-[#F9F6F0] border border-[#EFEAE2] p-10 hover:bg-white hover:border-[#C5A880] transition-all duration-500 shadow-sm flex flex-col justify-between min-h-[300px]">
-          <div>
-            <div class="text-xs font-mono text-[#C5A880] mb-8">/ 02</div>
-            <h3 class="text-xl font-bold tracking-tight text-[#1E2229] mb-4">Zero Patient Leaks</h3>
-            <p class="text-xs text-[#57534E] leading-relaxed font-normal">
-              Re-engineering heavy clinical backends into hyper-lightweight mobile frameworks. Completely eliminating the 40% patient dropout caused by sluggish loading speeds.
-            </p>
-          </div>
-        </div>
-
-        <!-- MODULE CARD 3 -->
-        <div class="solution-card opacity-0 bg-[#F9F6F0] border border-[#EFEAE2] p-10 hover:bg-white hover:border-[#C5A880] transition-all duration-500 shadow-sm flex flex-col justify-between min-h-[300px]">
-          <div>
-            <div class="text-xs font-mono text-[#C5A880] mb-8">/ 03</div>
-            <h3 class="text-xl font-bold tracking-tight text-[#1E2229] mb-4">Frictionless Routing</h3>
-            <p class="text-xs text-[#57534E] leading-relaxed font-normal">
-              Integrating a proprietary One-Tap WhatsApp Smart Router that channels high-value inbound patient queries directly to your clinical coordination desk instantly.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ANIMATION ENGINE AND CONTROLS ==================== -->
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      // Register GSAP System Components
-      gsap.registerPlugin(ScrollTrigger);
-
-      // 1. CINEMATIC HERO ENTRANCE
-      const tl = gsap.timeline();
-      tl.to('#hero-badge', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.3 })
-        .to('#hero-title', { opacity: 1, y: 0, duration: 1, ease: 'power4.out' }, '-=0.5')
-        .to('#hero-desc', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
-        .to('#hero-cta', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
-
-      // 2. HERO IMAGE PARALLAX BACKGROUND EFFECT
-      gsap.to('#hero-bg', {
-        scale: 1.15,
-        yPercent: 12,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: 'section',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
-
-      // 3. TWO-WAY SCROLL TRANSITIONS FOR CORE INFRASTRUCTURE
-      gsap.to('#solutions-header', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#solutions-header',
-          start: 'top 85%',
-          end: 'bottom 20%',
-
-          toggleActions: 'play reverse play reverse'
-        }
-      });
-      
-      // 4. STAGGERED REVEAL FOR LAYOUT MATRIX CARDS
-      gsap.to('.solution-card', {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {trigger: '#solutions .grid',
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play reverse play reverse'
-                       }
-      });
-    });
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitals Digital // Clinical Growth Architect</title>
+  
+  <!-- ENGINES & TYPOGRAPHY -->
+  <script src="https://tailwindcss.com"></script>
+  <script src="https://cloudflare.com"></script>
+  <script src="https://cloudflare.com"></script>
+  
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .text-gradient-bronze {
+      background: linear-gradient(135deg, #1E2229 30%, #C5A880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #FDFBF7;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #EFEAE2;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-[#FDFBF7] text-[#1E2229] font-sans overflow-x-hidden custom-scrollbar">
+
+  <!-- ==================== PREMIUM HEADER NAVIGATION ==================== -->
+  <header class="w-full fixed top-0 left-0 z-50 bg-[#FDFBF7]/80 backdrop-blur-xl border-b border-[#EFEAE2] transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-3 group cursor-pointer">
+        <span class="w-2 h-2 bg-[#C5A880] rounded-full"></span>
+        <span class="text-xs font-bold tracking-[0.3em] uppercase text-[#1E2229]">VITALS DIGITAL</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-12 text-[10px] font-bold tracking-[0.2em] text-[#78716C]">
+        <a href="#solutions" class="hover:text-[#1E2229] transition-colors duration-300">01 / ARCHITECTURE</a>
+        <a href="#case-studies" class="hover:text-[#1E2229] transition-colors duration-300">02 / DEPLOYMENTS</a>
+        <a href="#framework" class="hover:text-[#1E2229] transition-colors duration-300">03 / FRAMEWORK</a>
+      </nav>
+      <button class="px-6 py-3 text-[10px] font-bold tracking-[0.2em] text-white bg-[#1E2229] hover:bg-[#C5A880] transition-all duration-500 uppercase rounded-none shadow-sm">
+        INITIATE AUDIT
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN FULL-SCREEN HERO LAYER ==================== -->
+  <section class="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden pt-20">
+    
+    <!-- FULL IMAGE BACKGROUND WITH LUXURY OVERLAYS -->
+    <div class="absolute inset-0 z-0">
+      <img id="hero-bg" src="https://unsplash.com" 
+           alt="Luxury Design Space" class="w-full h-full object-cover origin-center scale-105">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#FDFBF7]/90 via-[#FDFBF7]/85 to-[#FDFBF7]"></div>
+    </div>
+
+    <!-- HERO CONTENT CONTAINER -->
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+      <div id="hero-badge" class="opacity-0 inline-flex items-center space-x-2 px-4 py-1.5 mb-8 text-[9px] font-bold tracking-[0.25em] text-[#78716C] uppercase border border-[#EFEAE2] bg-white/60 backdrop-blur-sm">
+        <span>POSITIONING</span><span class="text-[#C5A880]">//</span><span>CLINICAL GROWTH ARCHITECT</span>
+      </div>
+      
+      <h1 id="hero-title" class="opacity-0 text-4xl md:text-7xl font-extrabold tracking-tighter max-w-4xl leading-[1.05] mb-8 text-gradient-bronze">
+        We Engineer High-Yield <span class="font-serif font-normal italic text-[#C5A880] tracking-normal">Mobile Systems</span> for Elite Private Dental Practices.
+      </h1>
+      
+      <p id="hero-desc" class="opacity-0 text-xs md:text-sm text-[#57534E] max-w-2xl font-normal tracking-wide leading-relaxed mb-12">
+        Bypassing heavy templates. Deploying lightning-fast frameworks featuring Frictionless Mobile Conversion Mechanics to capture premium patients across South Delhi, Gurgaon, and South Mumbai.
+      </p>
+
+      <div id="hero-cta" class="opacity-0 flex flex-col items-center gap-4 w-full max-w-md">
+        <button class="w-full px-8 py-4 text-[10px] font-bold tracking-[0.25em] text-white bg-[#1E2229] hover:bg-[#C5A880] hover:shadow-[0_10px_30px_rgba(197,168,128,0.2)] transition-all duration-500 uppercase rounded-none">
+          Secure Your Clinic's Growth Blueprint
+        </button>
+        <div class="flex items-center space-x-2 text-[9px] font-mono tracking-widest text-[#78716C] mt-2">
+          <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
+          <span>WHATSAPP ROUTER LOGIC: OPERATIONAL (99.8% VELOCITY)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECTION 2: THE CLINICAL ARCHITECTURE ==================== -->
+  <section id="solutions" class="relative z-10 w-full bg-[#FDFBF7] border-t border-[#EFEAE2] py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- SECTION CONTAINER HEADER -->
+      <div id="solutions-header" class="opacity-0 flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-6">
+        <div>
+          <div class="text-[9px] font-bold tracking-[0.3em] text-[#C5A880] uppercase mb-3">01 // CORE INFRASTRUCTURE</div>
+          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-[#1E2229]">Engineered for High-Ticket Dental Brands.</h2>
+        </div>
+        <p class="text-xs text-[#57534E] max-w-xs font-normal leading-relaxed">
+          Completely rebuilding slow templates to completely eliminate patient conversion drop-off points.
+        </p>
+      </div>
+
+      <!-- 3-COLUMN RESPONSIVE LAYOUT MATRIX GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- MODULE CARD 1 -->
+        <div class="solution-card opacity-0 bg-[#F9F6F0] border border-[#EFEAE2] p-10 hover:bg-white hover:border-[#C5A880] transition-all duration-500 shadow-sm flex flex-col justify-between min-h-[300px]">
+          <div>
+            <div class="text-xs font-mono text-[#C5A880] mb-8">/ 01</div>
+            <h3 class="text-xl font-bold tracking-tight text-[#1E2229] mb-4">Tier-1 Hub Demographics</h3>
+            <p class="text-xs text-[#57534E] leading-relaxed font-normal">
+              Custom-targeted interfaces designed to systematically filter, attract, and capture high-intent patients looking for premium implant, veneer, and cosmetic dental treatments.
+            </p>
+          </div>
+        </div>
+
+        <!-- MODULE CARD 2 -->
+        <div class="solution-card opacity-0 bg-[#F9F6F0] border border-[#EFEAE2] p-10 hover:bg-white hover:border-[#C5A880] transition-all duration-500 shadow-sm flex flex-col justify-between min-h-[300px]">
+          <div>
+            <div class="text-xs font-mono text-[#C5A880] mb-8">/ 02</div>
+            <h3 class="text-xl font-bold tracking-tight text-[#1E2229] mb-4">Zero Patient Leaks</h3>
+            <p class="text-xs text-[#57534E] leading-relaxed font-normal">
+              Re-engineering heavy clinical backends into hyper-lightweight mobile frameworks. Completely eliminating the 40% patient dropout caused by sluggish loading speeds.
+            </p>
+          </div>
+        </div>
+
+        <!-- MODULE CARD 3 -->
+        <div class="solution-card opacity-0 bg-[#F9F6F0] border border-[#EFEAE2] p-10 hover:bg-white hover:border-[#C5A880] transition-all duration-500 shadow-sm flex flex-col justify-between min-h-[300px]">
+          <div>
+            <div class="text-xs font-mono text-[#C5A880] mb-8">/ 03</div>
+            <h3 class="text-xl font-bold tracking-tight text-[#1E2229] mb-4">Frictionless Routing</h3>
+            <p class="text-xs text-[#57534E] leading-relaxed font-normal">
+              Integrating a proprietary One-Tap WhatsApp Smart Router that channels high-value inbound patient queries directly to your clinical coordination desk instantly.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ANIMATION ENGINE AND CONTROLS ==================== -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP System Components
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 1. CINEMATIC HERO ENTRANCE
+      const tl = gsap.timeline();
+      tl.to('#hero-badge', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.3 })
+        .to('#hero-title', { opacity: 1, y: 0, duration: 1, ease: 'power4.out' }, '-=0.5')
+        .to('#hero-desc', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+        .to('#hero-cta', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+
+      // 2. HERO IMAGE PARALLAX BACKGROUND EFFECT
+      gsap.to('#hero-bg', {
+        scale: 1.15,
+        yPercent: 12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: 'section',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      // 3. TWO-WAY SCROLL TRANSITIONS FOR CORE INFRASTRUCTURE
+      gsap.to('#solutions-header', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#solutions-header',
+          start: 'top 85%',
+          end: 'bottom 20%',
+
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+      
+      // 4. STAGGERED REVEAL FOR LAYOUT MATRIX CARDS
+      gsap.to('.solution-card', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {trigger: '#solutions .grid',
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play reverse play reverse'
+                       }
+      });
+    });

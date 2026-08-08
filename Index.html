@@ -1,127 +1,560 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vitals Digital // Clinical Growth Architect</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-    html { scroll-behavior: smooth; background-color: #FAF7F2; }
-    body { background-color: #FAF7F2; color: #1E2229; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
-    header { width: 100%; position: fixed; top: 0; left: 0; z-index: 100; background-color: rgba(250, 247, 242, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-b: 1px solid #EAE3D5; }
-    .nav-container { max-w: 1200px; margin: 0 auto; padding: 0 24px; height: 80px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 11px; letter-spacing: 4px; color: #1E2229; }
-    .logo-dot { width: 6px; height: 6px; background-color: #C5A880; border-radius: 50%; }
-    .audit-btn { padding: 12px 24px; font-size: 10px; font-weight: 700; background-color: #1E2229; color: #FFFFFF; border: none; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; }
-    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 24px 80px 24px; background: linear-gradient(180deg, rgba(254,253,251,0.92) 0%, #FAF7F2 100%), url('https://unsplash.com'); background-size: cover; background-position: center; }
-    .badge { display: inline-block; padding: 6px 14px; font-size: 9px; font-weight: 700; color: #78716C; border: 1px solid #EAE3D5; background-color: rgba(255,255,255,0.9); letter-spacing: 3px; margin-bottom: 32px; text-transform: uppercase; animation: fUp 0.8s ease-out forwards; }
-    h1 { font-size: 34px; font-weight: 800; line-height: 1.15; max-w: 900px; margin-bottom: 24px; color: #1E2229; letter-spacing: -1px; opacity: 0; animation: fUp 1s ease-out 0.2s forwards; }
-    .hero-serif { font-family: "Didot", "Times New Roman", Georgia, serif; font-style: italic; font-weight: 400; color: #C5A880; }
-    .subtitle { font-size: 14px; color: #57534E; max-w: 680px; line-height: 1.65; margin-bottom: 44px; opacity: 0; animation: fUp 1s ease-out 0.4s forwards; }
-    .cta-btn { width: 100%; max-w: 380px; padding: 20px; font-size: 11px; font-weight: 700; color: #FFFFFF; background-color: #1E2229; border: none; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); opacity: 0; animation: fUp 1s ease-out 0.6s forwards; }
-    .cta-btn:hover { background-color: #C5A880; transform: translateY(-2px); }
-    .router-status { display: flex; align-items: center; gap: 8px; font-size: 9px; color: #78716C; margin-top: 28px; font-family: monospace; letter-spacing: 1px; opacity: 0; animation: fUp 1s ease-out 0.8s forwards; }
-    .ping-dot { width: 6px; height: 6px; background-color: #10B981; border-radius: 50%; display: inline-block; animation: pGlow 2s infinite; }
-    .sections-container { max-w: 1200px; margin: 0 auto; padding: 120px 24px; border-top: 1px solid #EAE3D5; }
-    .section-header { display: flex; flex-direction: column; margin-bottom: 72px; text-align: left; }
-    .section-label { font-size: 9px; font-weight: 700; color: #C5A880; letter-spacing: 4px; margin-bottom: 12px; }
-    .section-title { font-size: 26px; font-weight: 800; color: #1E2229; line-height: 1.2; letter-spacing: -0.5px; }
-    .grid-container { display: grid; grid-template-columns: 1fr; gap: 32px; }
-    .card { background-color: #FDFBF8; border: 1px solid #EAE3D5; padding: 52px 36px; display: flex; flex-direction: column; min-height: 290px; transition: all 0.3s; }
-    .card:hover { background-color: #FFFFFF; border-color: #C5A880; transform: translateY(-4px); box-shadow: 0 15px 30px rgba(197,168,128,0.06); }
-    .card-num { font-size: 11px; font-family: monospace; color: #C5A880; margin-bottom: 36px; font-weight: 600; }
-    .card-title { font-size: 20px; font-weight: 700; color: #1E2229; margin-bottom: 16px; letter-spacing: -0.5px; }
-    .card-desc { font-size: 13.5px; color: #57534E; line-height: 1.7; }
-    .case-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
-    .case-card { background-color: #FFFFFF; border: 1px solid #EAE3D5; padding: 48px 36px; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; transition: all 0.3s; }
-    .case-card:hover { border-color: #C5A880; transform: translateY(-4px); box-shadow: 0 15px 30px rgba(197,168,128,0.05); }
-    .case-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
-    .case-client { font-size: 10px; font-weight: 800; letter-spacing: 2px; color: #78716C; text-transform: uppercase; }
-    .case-tag { font-size: 9px; font-weight: 700; color: #C5A880; border: 1px solid #EAE3D5; padding: 4px 10px; background-color: #FAF7F2; text-transform: uppercase; }
-    .case-headline { font-size: 22px; font-weight: 800; color: #1E2229; tracking: -0.5px; line-height: 1.3; margin-bottom: 16px; }
-    .case-summary { font-size: 13.5px; color: #57534E; line-height: 1.65; margin-bottom: 36px; }
-    .case-link { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: #1E2229; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #1E2229; width: fit-content; padding-bottom: 4px; transition: all 0.3s; }
-    .case-link:hover { color: #C5A880; border-color: #C5A880; padding-left: 6px; }
-    @keyframes fUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pGlow { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
-    @media (min-width: 768px) { h1 { font-size: 58px; } .section-title { font-size: 38px; } .grid-container, .case-grid { grid-template-columns: repeat(3, 1fr); } }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vitals Digital — Clinical Growth Architect</title>
+<style>
+  :root{
+    --cream:#FAF7F2;
+    --obsidian:#1E2229;
+    --gold:#C5A880;
+    --alabaster:#FFFFFF;
+    --taupe:#EAE3D5;
+    --taupe-deep:#D9CFBB;
+    --sage:#8CA889;
+    --stone-600:#6B6459;
+    --stone-500:#8C8579;
+    --font-sans:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-serif:Georgia, 'Didot', 'Times New Roman', serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+  body{ margin:0; background:var(--cream); font-family:var(--font-sans); color:var(--obsidian); position:relative; overflow-x:hidden; }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--obsidian); outline-offset:3px; border-radius:2px; }
+
+  /* ===== FIXED AMBIENT CANVAS ===== */
+  .bg-canvas{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      linear-gradient(to right, rgba(30,34,41,0.045) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(to bottom, rgba(30,34,41,0.045) 1px, transparent 1px) 0 0/40px 40px,
+      radial-gradient(900px circle at 12% 15%, rgba(197,168,128,0.18), transparent 60%),
+      radial-gradient(1000px circle at 88% 90%, rgba(140,168,137,0.16), transparent 60%),
+      var(--cream);
+  }
+
+  /* ===== HEADER ===== */
+  .header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,247,242,0.85);
+    -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--taupe);
+  }
+  .header__inner{
+    max-width:1400px; margin:0 auto; padding:0 24px; height:76px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  @media (min-width:768px){ .header__inner{ padding:0 48px; } }
+
+  .badge{
+    display:inline-flex; align-items:center; padding:9px 16px;
+    border:1px solid var(--taupe); border-radius:8px;
+    background:rgba(255,255,255,0.55); text-decoration:none; white-space:nowrap;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  .badge:hover{ border-color:var(--taupe-deep); background:rgba(255,255,255,0.9); }
+  .badge__plus{ color:var(--gold); font-weight:700; font-size:14px; margin-right:6px; }
+  .badge__text{ font-family:var(--font-sans); font-weight:700; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--obsidian); }
+
+  .navlinks{
+    display:none; align-items:center; gap:34px;
+    position:absolute; left:50%; transform:translateX(-50%);
+    font-family:var(--font-sans); font-size:12px; text-transform:uppercase;
+    letter-spacing:0.12em; color:var(--stone-500); font-weight:600;
+  }
+  @media (min-width:768px){ .navlinks{ display:flex; } }
+  .navlinks a{ position:relative; text-decoration:none; color:var(--stone-500); padding-bottom:5px; transition:color .3s ease; }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--obsidian);
+    transform:scaleX(0); transform-origin:right; transition:transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .navlinks a:hover{ color:var(--obsidian); }
+  .navlinks a:hover::after{ transform:scaleX(1); transform-origin:left; }
+  .navlinks .dot{ color:var(--taupe-deep); }
+
+  .header__cta{
+    display:inline-flex; align-items:center; white-space:nowrap;
+    background:var(--obsidian); color:var(--cream); text-decoration:none;
+    border-radius:8px; padding:12px 22px;
+    font-family:var(--font-sans); font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    box-shadow:0 8px 20px -10px rgba(30,34,41,0.45);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+  }
+  .header__cta:hover{ transform:translateY(-4px); box-shadow:0 14px 28px -10px rgba(30,34,41,0.5); }
+
+  @media (max-width:420px){
+    .header__inner{ padding:0 14px; }
+    .badge{ padding:7px 12px; }
+    .badge__text{ font-size:9.5px; letter-spacing:0.16em; }
+    .header__cta{ padding:9px 14px; font-size:9.5px; letter-spacing:0.1em; }
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; display:flex; flex-direction:column; align-items:center;
+    text-align:center; padding:180px 24px 140px;
+  }
+  @media (max-width:640px){ .hero{ padding:130px 20px 90px; } }
+
+  .reveal{ opacity:0; animation:fadeUp .9s cubic-bezier(.16,1,.3,1) forwards; }
+  .d1{animation-delay:.05s;} .d2{animation-delay:.18s;} .d3{animation-delay:.32s;}
+  .d4{animation-delay:.46s;} .d5{animation-delay:.6s;}
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion:reduce){ .reveal{ animation:none; opacity:1; transform:none; } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; max-width:92vw;
+    border:1px solid var(--taupe); border-radius:999px;
+    padding:8px 18px; background:rgba(255,255,255,0.6);
+    font-family:var(--font-sans); font-weight:600; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.18em; color:var(--stone-500); text-align:center; line-height:1.5;
+  }
+  @media (max-width:420px){ .eyebrow{ font-size:9px; letter-spacing:0.12em; padding:6px 14px; } }
+
+  .headline{
+    margin:28px auto 0; max-width:880px; width:100%;
+    font-family:var(--font-sans); font-weight:700; letter-spacing:-0.035em;
+    color:var(--obsidian); line-height:1.04; font-size:2.4rem;
+  }
+  @media (min-width:640px){ .headline{ font-size:3.15rem; } }
+  @media (min-width:768px){ .headline{ font-size:4rem; } }
+  @media (min-width:1024px){ .headline{ font-size:4.9rem; } }
+  @media (max-width:380px){ .headline{ font-size:2.05rem; } }
+  .headline em{ font-family:var(--font-serif); font-style:italic; font-weight:400; color:var(--gold); }
+
+  .subtitle{
+    margin:30px auto 0; max-width:620px; width:100%;
+    font-family:var(--font-sans); font-size:16px; line-height:1.7; color:var(--stone-600);
+  }
+  @media (min-width:768px){ .subtitle{ font-size:18px; } }
+
+  .cta-primary{
+    margin-top:44px; display:inline-flex; align-items:center; gap:12px;
+    background:var(--obsidian); color:var(--cream); text-decoration:none;
+    padding:18px 40px; border-radius:10px;
+    font-family:var(--font-sans); font-weight:700; font-size:15px; letter-spacing:0.01em;
+    box-shadow:0 18px 38px -14px rgba(30,34,41,0.45);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+    max-width:92vw; text-align:center;
+  }
+  .cta-primary:hover{ transform:translateY(-4px); box-shadow:0 24px 48px -16px rgba(30,34,41,0.5); }
+  .cta-primary svg{ transition:transform .3s ease; flex-shrink:0; }
+  .cta-primary:hover svg{ transform:translateX(4px); }
+  @media (max-width:380px){ .cta-primary{ font-size:13.5px; padding:15px 28px; gap:9px; } }
+
+  .status-pill{
+    margin-top:26px; display:inline-flex; align-items:center; gap:10px; max-width:92vw;
+    border:1px solid var(--taupe); border-radius:999px;
+    padding:8px 16px 8px 14px; background:rgba(255,255,255,0.6);
+  }
+  .status-dot{ position:relative; width:8px; height:8px; flex-shrink:0; }
+  .status-dot::before, .status-dot::after{ content:''; position:absolute; inset:0; border-radius:50%; background:var(--sage); }
+  .status-dot::before{ animation:ping 1.8s cubic-bezier(0,0,0.2,1) infinite; }
+  @keyframes ping{ 75%,100%{ transform:scale(2.4); opacity:0; } }
+  @media (prefers-reduced-motion:reduce){ .status-dot::before{ animation:none; opacity:0.6; } }
+  .status-text{ font-family:var(--font-sans); font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:0.14em; color:var(--stone-500); }
+  .status-text strong{ color:var(--obsidian); font-weight:700; }
+  @media (max-width:420px){ .status-text{ font-size:9px; letter-spacing:0.1em; } }
+
+  /* ===== SHARED SECTION HEADER ===== */
+  .reveal-io{ opacity:0; transform:translateY(20px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal-io.is-visible{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion:reduce){ .reveal-io{ transition:none; opacity:1; transform:none; } }
+
+  .kicker{ display:block; font-family:var(--font-sans); font-weight:700; font-size:10.5px; text-transform:uppercase; letter-spacing:0.2em; color:var(--stone-500); }
+  .section-title{
+    margin:16px 0 0; max-width:640px;
+    font-family:var(--font-sans); font-weight:700; letter-spacing:-0.03em;
+    color:var(--obsidian); line-height:1.08; text-align:left; font-size:1.85rem;
+  }
+  @media (min-width:640px){ .section-title{ font-size:2.35rem; } }
+  @media (min-width:1024px){ .section-title{ font-size:2.75rem; } }
+
+  /* ===== SECTION 2 — CORE MATRIX ===== */
+  .section2{ position:relative; padding:88px 24px; border-top:1px solid var(--taupe); }
+  @media (min-width:768px){ .section2{ padding:96px 48px; } }
+  .section2__inner{ max-width:1400px; margin:0 auto; }
+
+  .matrix-grid{
+    margin-top:60px; display:grid; grid-template-columns:1fr; gap:1px;
+    background:var(--taupe); border:1px solid var(--taupe);
+  }
+  @media (min-width:860px){ .matrix-grid{ grid-template-columns:repeat(3,1fr); } }
+
+  .matrix-card{
+    position:relative; background:var(--alabaster); padding:40px 32px;
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, background .35s ease;
+  }
+  .matrix-card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px -16px rgba(30,34,41,0.22); background:#FBF9F5; z-index:2; }
+  @media (max-width:640px){ .matrix-card{ padding:32px 24px; } }
+
+  .matrix-card__heading{ margin:0 0 12px; font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:1.15rem; color:var(--obsidian); }
+  .matrix-card__index{ color:var(--gold); margin-right:4px; }
+  .matrix-card__text{ margin:0; font-family:var(--font-sans); font-size:14.5px; line-height:1.7; color:var(--stone-600); }
+
+  /* ===== SECTION 3 — CASE STUDIES ===== */
+  .section3{ position:relative; padding:88px 24px 130px; border-top:1px solid var(--taupe); }
+  @media (min-width:768px){ .section3{ padding:96px 48px 150px; } }
+  .section3__inner{ max-width:1400px; margin:0 auto; }
+
+  .case-grid{ margin-top:60px; display:grid; grid-template-columns:1fr; gap:26px; }
+  @media (min-width:860px){ .case-grid{ grid-template-columns:repeat(3,1fr); } }
+
+  .case-card{
+    display:flex; flex-direction:column; text-decoration:none; color:inherit;
+    background:var(--alabaster); border:1px solid var(--taupe); border-radius:14px; padding:34px 28px;
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, border-color .35s ease;
+  }
+  .case-card:hover{ transform:translateY(-4px); box-shadow:0 24px 46px -20px rgba(30,34,41,0.25); border-color:var(--taupe-deep); }
+
+  .case-card__meta{ display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; gap:10px; }
+  .case-card__status{ display:inline-flex; align-items:center; gap:6px; font-family:var(--font-sans); font-weight:700; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--sage); white-space:nowrap; }
+  .case-card__status .dot{ width:6px; height:6px; border-radius:50%; background:var(--sage); display:inline-block; flex-shrink:0; }
+  .case-card__location{ font-family:var(--font-sans); font-size:11px; letter-spacing:0.06em; color:var(--stone-500); white-space:nowrap; }
+
+  .case-card__headline{ margin:0 0 8px; font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:1.3rem; color:var(--obsidian); line-height:1.25; }
+  .case-card__client{ margin:0 0 22px; font-family:var(--font-serif); font-style:italic; font-size:14.5px; color:var(--stone-600); }
+
+  .case-card__link{
+    margin-top:auto; display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--font-sans); font-weight:700; font-size:13px; color:var(--obsidian);
+    padding-top:16px; border-top:1px solid var(--taupe);
+    transition:gap .3s ease, color .3s ease;
+  }
+  .case-card:hover .case-card__link{ gap:10px; color:var(--gold); }
+  .case-card__link svg{ flex-shrink:0; }
+
+  /* ===== SECTION 4 — OPERATIONAL BLUEPRINT TIMELINE ===== */
+  .section4{ position:relative; padding:88px 24px 130px; border-top:1px solid var(--taupe); }
+  @media (min-width:768px){ .section4{ padding:96px 48px 150px; } }
+  .section4__inner{ max-width:1400px; margin:0 auto; }
+
+  .kicker--gold{ color:var(--gold); }
+
+  .timeline{ margin-top:60px; display:flex; flex-direction:column; gap:20px; }
+  @media (min-width:900px){ .timeline{ flex-direction:row; align-items:stretch; gap:10px; } }
+
+  .step{
+    flex:1; position:relative; background:var(--alabaster); border:1px solid var(--taupe); border-radius:14px;
+    padding:36px 28px;
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, border-color .35s ease;
+  }
+  .step:hover{ transform:translateY(-4px); box-shadow:0 22px 44px -20px rgba(30,34,41,0.2); border-color:var(--taupe-deep); }
+
+  .step__number{ display:block; font-family:var(--font-serif); font-style:italic; font-weight:400; font-size:2.6rem; color:var(--gold); line-height:1; margin-bottom:18px; }
+  .step__title{ margin:0 0 10px; font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:1.1rem; color:var(--obsidian); }
+  .step__text{ margin:0; font-family:var(--font-sans); font-size:14px; line-height:1.7; color:var(--stone-600); }
+
+  .step-arrow{ display:none; align-items:center; justify-content:center; flex:0 0 auto; width:28px; color:var(--gold); font-size:18px; }
+  @media (min-width:900px){ .step-arrow{ display:flex; } }
+
+  /* ===== SECTION 5 — INTAKE ANCHOR ===== */
+  .section5{ position:relative; padding:88px 24px 110px; border-top:1px solid var(--taupe); }
+  @media (min-width:768px){ .section5{ padding:96px 48px 130px; } }
+  .section5__inner{ max-width:1400px; margin:0 auto; }
+
+  .intake-grid{ margin-top:60px; display:grid; grid-template-columns:1fr; gap:40px; align-items:start; }
+  @media (min-width:960px){ .intake-grid{ grid-template-columns:1fr 1.1fr; gap:64px; } }
+
+  .intake-context__title{ margin:0 0 18px; font-family:var(--font-sans); font-weight:700; letter-spacing:-0.02em; font-size:1.5rem; color:var(--obsidian); line-height:1.25; }
+  @media (min-width:768px){ .intake-context__title{ font-size:1.75rem; } }
+  .intake-context__text{ margin:0 0 28px; font-family:var(--font-sans); font-size:15.5px; line-height:1.75; color:var(--stone-600); max-width:440px; }
+
+  .capacity-tag{ display:inline-flex; align-items:center; gap:10px; border:1px solid var(--taupe); border-radius:999px; padding:10px 18px; background:rgba(255,255,255,0.6); }
+  .capacity-tag__dot{ position:relative; width:7px; height:7px; flex-shrink:0; }
+  .capacity-tag__dot::before, .capacity-tag__dot::after{ content:''; position:absolute; inset:0; border-radius:50%; background:var(--gold); }
+  .capacity-tag__dot::before{ animation:ping 1.8s cubic-bezier(0,0,0.2,1) infinite; }
+  @media (prefers-reduced-motion:reduce){ .capacity-tag__dot::before{ animation:none; opacity:0.6; } }
+  .capacity-tag__text{ font-family:var(--font-sans); font-weight:700; font-size:12.5px; letter-spacing:0.02em; color:var(--obsidian); }
+
+  .intake-form-card{ background:var(--alabaster); border:1px solid var(--taupe); border-radius:16px; padding:36px 30px; }
+  @media (min-width:768px){ .intake-form-card{ padding:44px 40px; } }
+
+  .field{ margin-bottom:22px; text-align:left; }
+  .field:last-of-type{ margin-bottom:0; }
+  .field__label{ display:block; margin-bottom:8px; font-family:var(--font-sans); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--stone-500); }
+
+  .field__input, .field__select{
+    width:100%; display:block; background:var(--alabaster); border:1px solid var(--taupe); border-radius:8px;
+    padding:14px 16px; font-family:var(--font-sans); font-size:14.5px; color:var(--obsidian);
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .field__input::placeholder{ color:var(--stone-500); opacity:0.7; }
+  .field__input:focus, .field__select:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(197,168,128,0.18); }
+
+  .field__select{
+    appearance:none; -webkit-appearance:none; -moz-appearance:none; cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 16 16' fill='none'><path d='M4 6L8 10L12 6' stroke='%236B6459' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat; background-position:right 16px center; padding-right:40px;
+  }
+
+  .intake-submit{
+    margin-top:8px; width:100%; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--obsidian); color:var(--cream); border:none; cursor:pointer;
+    padding:18px 28px; border-radius:10px;
+    font-family:var(--font-sans); font-weight:700; font-size:14px; letter-spacing:0.05em; text-transform:uppercase;
+    box-shadow:0 18px 38px -16px rgba(30,34,41,0.4);
+    transition:background .35s ease, color .35s ease, transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+  }
+  .intake-submit:hover{ background:var(--gold); color:var(--obsidian); transform:translateY(-4px); box-shadow:0 22px 44px -16px rgba(197,168,128,0.45); }
+  .intake-submit:disabled{ cursor:default; transform:none; }
+
+  .intake-note{ display:none; margin-top:16px; font-family:var(--font-sans); font-size:13px; line-height:1.6; color:var(--stone-600); text-align:center; }
+
+  /* ===== FOOTER ===== */
+  .footer{ position:relative; padding:44px 24px; text-align:center; border-top:1px solid var(--taupe); }
+  .footer__text{ font-family:var(--font-sans); font-weight:600; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--stone-500); }
+</style>
 </head>
 <body>
-  <header>
-    <div class="nav-container">
-      <div class="logo"><span class="logo-dot"></span><span>VITALS DIGITAL</span></div>
-      <button class="audit-btn">Initiate Audit</button>
+
+  <div class="bg-canvas"></div>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="#" class="badge">
+        <span class="badge__plus">+</span>
+        <span class="badge__text">Vitals Digital</span>
+      </a>
+
+      <nav class="navlinks">
+        <a href="architecture.html">Architecture</a>
+        <span class="dot">•</span>
+        <a href="#">Solutions</a>
+        <span class="dot">•</span>
+        <a href="#">Impact</a>
+      </nav>
+
+      <a href="#audit" class="header__cta">Initiate Audit</a>
     </div>
   </header>
+
   <section class="hero">
-    <div class="badge">POSITIONING // CLINICAL GROWTH ARCHITECT</div>
-    <h1>We Engineer High-Yield <span class="hero-serif">Mobile Systems</span> for Elite Private Dental Practices.</h1>
-    <p class="subtitle">Bypassing heavy templates. Deploying lightning-fast frameworks featuring Frictionless Mobile Conversion Mechanics to capture premium patients across South Delhi, Gurgaon, and South Mumbai.</p>
-    <button class="cta-btn">Secure Your Clinic's Growth Blueprint</button>
-    <div class="router-status"><span class="ping-dot"></span><span>WHATSAPP ROUTER LOGIC: OPERATIONAL (99.8% VELOCITY)</span></div>
+    <div class="reveal d1">
+      <span class="eyebrow">Positioning // Clinical Growth Architect</span>
+    </div>
+
+    <h1 class="headline reveal d2">
+      We Engineer <em>High-Yield</em> Mobile Systems for <em>Elite</em> Private Dental Practices.
+    </h1>
+
+    <p class="subtitle reveal d3">
+      We bypass heavy, broken code to deploy lightning-fast, precision-built platforms that eliminate patient drop-off — engineered for Dentists, Orthodontists, and Premium Dental Specialists across South Delhi, Gurgaon, and South Mumbai.
+    </p>
+
+    <div class="reveal d4">
+      <a href="#blueprint" class="cta-primary">
+        Secure Your Clinic's Growth Blueprint
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="reveal d5">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span class="status-text">WhatsApp Smart Router Engine: <strong>Active</strong> (99.8% Velocity)</span>
+      </div>
+    </div>
   </section>
-  <section class="sections-container">
-    <div class="section-header">
-      <div>
-        <div class="section-label">01 // CORE INFRASTRUCTURE</div>
+
+  <section class="section2">
+    <div class="section2__inner">
+      <div class="reveal-io">
+        <span class="kicker">01 // System Stability</span>
         <h2 class="section-title">Engineered for High-Ticket Dental Brands.</h2>
       </div>
-    </div>
-    <div class="grid-container">
-      <div class="card">
-        <div class="card-num">/ 01</div>
-        <h3 class="card-title">Tier-1 Hub Demographics</h3>
-        <p class="card-desc">Custom-targeted interfaces designed to systematically filter, attract, and capture high-intent patients looking for premium implant, veneer, and cosmetic dental treatments.</p>
-      </div>
-      <div class="card">
-        <div class="card-num">/ 02</div>
-        <h3 class="card-title">Zero Patient Leaks</h3>
-        <p class="card-desc">Re-engineering heavy clinical backends into hyper-lightweight mobile frameworks. Completely eliminating the 40% patient dropout caused by sluggish loading speeds.</p>
-      </div>
-      <div class="card">
-        <div class="card-num">/ 03</div>
-        <h3 class="card-title">Frictionless Routing</h3>
-        <p class="card-desc">Integrating a proprietary One-Tap WhatsApp Smart Router that channels high-value inbound patient queries directly to your clinical coordination desk instantly.</p>
+
+      <div class="matrix-grid">
+        <div class="matrix-card reveal-io">
+          <h3 class="matrix-card__heading"><span class="matrix-card__index">/01</span>Tier-1 Hub Demographics</h3>
+          <p class="matrix-card__text">Custom interfaces built exclusively to filter and capture high-intent patients looking for premium implant, cosmetic, and surgical treatments in South Delhi, Gurgaon, and South Mumbai.</p>
+        </div>
+        <div class="matrix-card reveal-io">
+          <h3 class="matrix-card__heading"><span class="matrix-card__index">/02</span>Zero Patient Leaks</h3>
+          <p class="matrix-card__text">Re-engineering heavy clinic code into lightweight mobile frameworks — completely eliminating the 40% patient drop-off rate caused by unoptimized templates.</p>
+        </div>
+        <div class="matrix-card reveal-io">
+          <h3 class="matrix-card__heading"><span class="matrix-card__index">/03</span>Frictionless Routing</h3>
+          <p class="matrix-card__text">Deploying a proprietary One-Tap WhatsApp Smart Router to cleanly link high-value inbound traffic directly to your clinic's scheduling desk, instantly.</p>
+        </div>
       </div>
     </div>
   </section>
-    <section class="sections-container" style="border-top: 1px solid #EAE3D5;">
-    <div class="section-header">
-      <div>
-        <div class="section-label">02 // PROVEN DEPLOYMENTS</div>
+
+  <section class="section3">
+    <div class="section3__inner">
+      <div class="reveal-io">
+        <span class="kicker">02 // Verified Deployments</span>
         <h2 class="section-title">Live Clinical Case Studies.</h2>
       </div>
-    </div>
-    <div class="case-grid">
-      <div class="case-card">
-        <div>
-          <div class="case-meta"><span class="case-client">Navkar Smile Craft</span><span class="case-tag">Bhuj, GJ</span></div>
-          <h3 class="case-headline">Painless Emergency Architecture</h3>
-          <p class="case-summary">Engineering a hyper-optimized mobile routing system utilizing instant conversion routing layout pathways to capture 24/7 urgent procedures with zero layout friction.</p>
-        </div>
-        <a href="https://lovable.app" target="_blank" class="case-link">Launch Live System →</a>
-      </div>
-      <div class="case-card">
-        <div>
-          <div class="case-meta"><span class="case-client">Apex Smiles Studio</span><span class="case-tag">Rajkot, GJ</span></div>
-          <h3 class="case-headline">High-Velocity Patient Funnel</h3>
-          <p class="case-summary">Leveraging a massive 2,752+ review authority footprint into a clean, modern interface that converts local practice visibility into new cosmetic case consults instantly.</p>
-        </div>
-        <a href="https://lovable.app" target="_blank" class="case-link">Launch Live System →</a>
-      </div>
-      <div class="case-card">
-        <div>
-          <div class="case-meta"><span class="case-client">Smile Glide Landing</span><span class="case-tag">Patan, GJ</span></div>
-          <h3 class="case-headline">The 3-Day Fixed Teeth Protocol</h3>
-          <p class="case-summary">Architecting an elite, high-ticket dental implant conversion system designed specifically to route premium surgery leads directly to front desk coordinators.</p>
-        </div>
-        <a href="https://lovable.app" target="_blank" class="case-link">Launch Live System →</a>
+
+      <div class="case-grid">
+        <a href="https://navkar-smile-craft.lovable.app" target="_blank" rel="noopener noreferrer" class="case-card reveal-io">
+          <div class="case-card__meta">
+            <span class="case-card__status"><span class="dot"></span>Live</span>
+            <span class="case-card__location">Bhuj, GJ</span>
+          </div>
+          <h3 class="case-card__headline">Painless Emergency Architecture</h3>
+          <p class="case-card__client">Navkar Smile Craft</p>
+          <span class="case-card__link">
+            View Live Project
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="https://apex-smiles-studio.lovable.app" target="_blank" rel="noopener noreferrer" class="case-card reveal-io">
+          <div class="case-card__meta">
+            <span class="case-card__status"><span class="dot"></span>Live</span>
+            <span class="case-card__location">Rajkot, GJ</span>
+          </div>
+          <h3 class="case-card__headline">High-Velocity Patient Funnel</h3>
+          <p class="case-card__client">Apex Smiles Studio</p>
+          <span class="case-card__link">
+            View Live Project
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="https://smile-glide-landing.lovable.app" target="_blank" rel="noopener noreferrer" class="case-card reveal-io">
+          <div class="case-card__meta">
+            <span class="case-card__status"><span class="dot"></span>Live</span>
+            <span class="case-card__location">Patan, GJ</span>
+          </div>
+          <h3 class="case-card__headline">The 3-Day Fixed Teeth Protocol</h3>
+          <p class="case-card__client">Smile Glide Landing</p>
+          <span class="case-card__link">
+            View Live Project
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
       </div>
     </div>
   </section>
+
+  <section class="section4">
+    <div class="section4__inner">
+      <div class="reveal-io">
+        <span class="kicker kicker--gold">03 // Operational Blueprint</span>
+        <h2 class="section-title">The 4-Step Clinical Launch Framework.</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="step reveal-io">
+          <span class="step__number">01</span>
+          <h3 class="step__title">Frictionless Audit</h3>
+          <p class="step__text">We systematically dissect your clinic's current mobile layout to locate and isolate hidden patient conversion drop-off points.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step reveal-io">
+          <span class="step__number">02</span>
+          <h3 class="step__title">System Architecture</h3>
+          <p class="step__text">We engineer an ultra-clean, custom mobile-first front-end interface built exclusively around luxury cosmetic and implant aesthetics.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step reveal-io">
+          <span class="step__number">03</span>
+          <h3 class="step__title">Smart Router Link</h3>
+          <p class="step__text">Deploying our proprietary One-Tap WhatsApp Smart Router to cleanly funnel high-ticket inbound patient traffic straight to your front desk.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step reveal-io">
+          <span class="step__number">04</span>
+          <h3 class="step__title">Velocity Launch</h3>
+          <p class="step__text">Your clinical platform goes live on hyper-lightweight infrastructure, delivering guaranteed sub-1.2 second mobile loading speeds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section5">
+    <div class="section5__inner">
+      <div class="reveal-io">
+        <span class="kicker kicker--gold">04 // Initiate System</span>
+        <h2 class="section-title">Architecting Elite Clinic Growth.</h2>
+      </div>
+
+      <div class="intake-grid">
+        <div class="intake-context reveal-io">
+          <h3 class="intake-context__title">Exclusively Booking for Tier-1 Practices.</h3>
+          <p class="intake-context__text">Our operational building capacity is strictly limited to 2 active medical brand builds per quarter to ensure flawless infrastructure execution across South Delhi, Gurgaon, and South Mumbai.</p>
+          <div class="capacity-tag">
+            <span class="capacity-tag__dot"></span>
+            <span class="capacity-tag__text">Current Capacity: 1 Slot Remaining for Q3</span>
+          </div>
+        </div>
+
+        <div class="intake-form-card reveal-io">
+          <form id="intakeForm">
+            <div class="field">
+              <label class="field__label" for="clinicName">Clinic Name / Specialization</label>
+              <input class="field__input" type="text" id="clinicName" name="clinicName" placeholder="e.g. Aura Dental Studio — Cosmetic &amp; Implants" required />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="locationHub">Location Hub</label>
+              <select class="field__select" id="locationHub" name="locationHub" required>
+                <option value="" disabled selected>Select your hub</option>
+                <option value="south-delhi">South Delhi</option>
+                <option value="gurgaon">Gurgaon</option>
+                <option value="south-mumbai">South Mumbai</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contactNumber">Primary Contact / WhatsApp Number</label>
+              <input class="field__input" type="tel" id="contactNumber" name="contactNumber" placeholder="+91 00000 00000" required />
+            </div>
+
+            <button type="submit" class="intake-submit">Request Clinical System Audit</button>
+            <p class="intake-note">Thank you — our team typically responds within one business day.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="footer__text">© Vitals Digital. All Rights Reserved.</span>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var els = document.querySelectorAll('.reveal-io');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        els.forEach(function (el) { io.observe(el); });
+      } else {
+        els.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      var form = document.getElementById('intakeForm');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var btn = form.querySelector('.intake-submit');
+          var note = form.querySelector('.intake-note');
+          btn.textContent = 'Request Received';
+          btn.disabled = true;
+          if (note) { note.style.display = 'block'; }
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
+
 
 
